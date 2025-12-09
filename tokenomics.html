@@ -1,95 +1,850 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>CHLG Tokenomics – Supply &amp; Allocation</title>
-    <meta
-      name="description"
-      content="Token supply, allocation and vesting details for CHLG – the Challenge-to-Earn token."
-    />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="style.css" />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <title>CHLG – Tokenomics</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="CHLG rewards users with crypto for completing real-life challenges verified by AI."
+  />
+  <style>
+    :root {
+      --bg: #020008;
+      --primary: #c800ff;
+      --secondary: #00f0ff;
+      --accent: #ff0080;
+      --text-main: #f5f5f5;
+      --muted: #a0a0b8;
+      --card-bg: rgba(10, 8, 30, 0.96);
+      --border-subtle: rgba(255, 255, 255, 0.06);
+    }
 
-  <body>
-    <div class="wrapper">
-      <!-- NAVBAR -->
-      <header class="navbar">
-        <div class="logo">
-          <div class="logo-mark"></div>
-          <div class="logo-text">CHLG TOKEN</div>
-        </div>
-        <nav class="nav-links">
-          <a href="index.html">Home</a>
-          <a href="app.html">App</a>
-          <a href="tokenomics.html">Tokenomics</a>
-          <a href="#" class="nav-cta">Presale (soon)</a>
-        </nav>
-      </header>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Inter",
+        "Segoe UI", sans-serif;
+    }
 
-      <main>
-        <section class="section">
-          <h2>Total supply &amp; vision</h2>
-          <p>
-            CHLG is designed as a long-term ecosystem token, not a short pump narrative.
-          </p>
-          <p>
-            Final supply numbers, chain selection (ETH / Base / Solana) and detailed vesting
-            will be locked before launch with audit and listing partners.
-          </p>
-        </section>
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(200, 0, 255, 0.25), transparent 55%),
+        radial-gradient(circle at 90% 100%, rgba(0, 240, 255, 0.25), transparent 55%),
+        radial-gradient(circle at 50% 50%, rgba(255, 0, 128, 0.12), transparent 55%),
+        var(--bg);
+      color: var(--text-main);
+      scroll-behavior: smooth;
+    }
 
-        <section class="section">
-          <h2>Draft tokenomics (for discussion)</h2>
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-          <table class="token-table">
-            <thead>
-              <tr>
-                <th>Category</th>
-                <th>Allocation</th>
-                <th>Vesting idea</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Community rewards (challenges)</td>
-                <td>40%</td>
-                <td>Emitted over 8–10 years</td>
-              </tr>
-              <tr>
-                <td>Team &amp; founders</td>
-                <td>18%</td>
-                <td>1 year cliff, 3–4y linear</td>
-              </tr>
-              <tr>
-                <td>Presale / seed investors</td>
-                <td>18%</td>
-                <td>Small TGE, remainder linear</td>
-              </tr>
-              <tr>
-                <td>Liquidity &amp; CEX listings</td>
-                <td>12%</td>
-                <td>Unlocked for liquidity pools</td>
-              </tr>
-              <tr>
-                <td>Partners &amp; creators</td>
-                <td>7%</td>
-                <td>Vesting under partnership deals</td>
-              </tr>
-              <tr>
-                <td>Treasury &amp; growth</td>
-                <td>5%</td>
-                <td>Reserved for future campaigns</td>
-              </tr>
-            </tbody>
-          </table>
+    /* NAVBAR – CLEANER, MORE PROFESSIONAL */
 
-          <p style="margin-top: 10px;">
-            Numbers here are for draft and strategy sessions – we will refine them with
-            legal, audit and launch partners before final whitepaper.
-          </p>
-        </section>
-      </main>
+    .chlg-navbar {
+      width: 100%;
+      padding: 12px 0;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(
+        to bottom,
+        rgba(3, 0, 12, 0.92),
+        rgba(3, 0, 12, 0.88)
+      );
+      border-bottom: 1px solid var(--border-subtle);
+      position: sticky;
+      top: 0;
+      z-index: 9999;
+    }
+
+    .chlg-nav-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .chlg-logo-area {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .chlg-logo-pill {
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 20%,
+        rgba(20, 0, 40, 1) 0%,
+        rgba(10, 0, 25, 1) 45%,
+        rgba(3, 0, 10, 1) 100%
+      );
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 18px rgba(255, 0, 200, 0.7);
+      animation: chlgGlow 2.4s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+
+    .chlg-logo {
+      width: 32px;
+      height: 26px;
+      object-fit: contain;
+    }
+
+    .chlg-logo-text {
+      font-size: 14px;
+      color: #ffffff;
+      font-weight: 600;
+      opacity: 0.9;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .chlg-nav-links {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex: 1;
+      justify-content: center;
+    }
+
+    .nav-btn {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 11px;
+      text-decoration: none;
+      padding: 7px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background:
+        radial-gradient(circle at 0 0, rgba(200, 0, 255, 0.18), transparent 60%),
+        radial-gradient(circle at 100% 100%, rgba(0, 240, 255, 0.16), transparent 60%);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: all 0.18s ease-out;
+      white-space: nowrap;
+    }
+
+    .nav-btn:hover {
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.6);
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+      box-shadow:
+        0 0 18px rgba(200, 0, 255, 0.55),
+        0 0 22px rgba(0, 240, 255, 0.35);
+      transform: translateY(-1px) scale(1.01);
+    }
+
+    .nav-btn.active {
+      color: #ffffff;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border-color: rgba(255, 255, 255, 0.85);
+      box-shadow:
+        0 0 22px rgba(200, 0, 255, 0.75),
+        0 0 26px rgba(255, 0, 128, 0.55);
+    }
+
+    .nav-cta {
+      padding: 9px 20px;
+      background: linear-gradient(90deg, #ff00cc, #ff4dd2);
+      border-radius: 999px;
+      color: white;
+      font-weight: 600;
+      font-size: 12px;
+      text-decoration: none;
+      transition: 0.2s ease;
+      box-shadow: 0 0 15px rgba(255, 0, 200, 0.45);
+      white-space: nowrap;
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 22px rgba(255, 0, 200, 0.7);
+    }
+
+    @keyframes chlgGlow {
+      0% {
+        box-shadow: 0 0 10px rgba(255, 0, 200, 0.45);
+        transform: translateY(0);
+      }
+      50% {
+        box-shadow: 0 0 26px rgba(0, 255, 255, 0.75);
+        transform: translateY(-1px);
+      }
+      100% {
+        box-shadow: 0 0 10px rgba(255, 0, 200, 0.45);
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 800px) {
+      .chlg-nav-inner {
+        flex-wrap: wrap;
+        justify-content: space-between;
+        row-gap: 10px;
+      }
+
+      .chlg-nav-links {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .nav-btn {
+        font-size: 10px;
+        padding: 6px 10px;
+      }
+
+      .nav-cta {
+        font-size: 11px;
+        padding: 8px 16px;
+      }
+    }
+
+    /* PAGE LAYOUT */
+
+    .page-wrapper {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 26px 20px 40px;
+    }
+
+    #tokenomics,
+    #vesting,
+    #stability,
+    #disclaimer {
+      scroll-margin-top: 120px;
+    }
+
+    .section {
+      margin-bottom: 40px;
+    }
+
+    .section-header {
+      margin-bottom: 22px;
+      text-align: left;
+    }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: rgba(6, 6, 26, 0.9);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .section-label-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--secondary), var(--primary));
+      box-shadow: 0 0 10px rgba(0, 240, 255, 0.7);
+    }
+
+    .section-header h2 {
+      font-size: clamp(26px, 3vw, 30px);
+      letter-spacing: 0.04em;
+      margin-bottom: 6px;
+    }
+
+    .section-header p {
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 560px;
+      line-height: 1.6;
+    }
+
+    /* HERO STRIP FOR TOKENOMICS */
+
+    .tm-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 20px;
+      margin-bottom: 26px;
+    }
+
+    @media (max-width: 900px) {
+      .tm-hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .tm-hero-main {
+      background: radial-gradient(circle at 0 0, rgba(200, 0, 255, 0.25), transparent 60%),
+        radial-gradient(circle at 100% 100%, rgba(0, 240, 255, 0.2), transparent 55%),
+        rgba(5, 5, 22, 0.96);
+      border-radius: 20px;
+      padding: 18px 18px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow:
+        0 0 42px rgba(0, 0, 0, 0.8),
+        0 0 60px rgba(200, 0, 255, 0.26);
+    }
+
+    .tm-hero-title {
+      font-size: 22px;
+      margin-bottom: 6px;
+    }
+
+    .tm-hero-sub {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+      max-width: 520px;
+      margin-bottom: 12px;
+    }
+
+    .tm-hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+      font-size: 11px;
+    }
+
+    .tm-tag {
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(6, 6, 26, 0.9);
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .tm-hero-aside {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    @media (max-width: 600px) {
+      .tm-hero-aside {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    .tm-stat-card {
+      background: rgba(5, 5, 24, 0.95);
+      border-radius: 16px;
+      padding: 10px 12px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 11px;
+      color: var(--muted);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .tm-stat-label {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 10px;
+      opacity: 0.9;
+    }
+
+    .tm-stat-value {
+      font-size: 14px;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    /* INFO GRID */
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 20px;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+
+    @media (max-width: 900px) {
+      .info-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .info-card {
+      background: rgba(5, 5, 24, 0.96);
+      border-radius: 18px;
+      padding: 18px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+    }
+
+    .info-card h3 {
+      font-size: 16px;
+      margin-bottom: 6px;
+    }
+
+    .info-card p {
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    /* TOKENOMICS GRID */
+
+    .tokenomics-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+      align-items: flex-start;
+      margin-top: 18px;
+    }
+
+    @media (max-width: 1100px) {
+      .tokenomics-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 760px) {
+      .tokenomics-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .tokenomics-block {
+      background: rgba(5, 5, 24, 0.96);
+      border-radius: 18px;
+      padding: 18px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      box-shadow: 0 0 18px rgba(0, 0, 0, 0.55);
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .tokenomics-block h3 {
+      font-size: 16px;
+      margin-bottom: 8px;
+      color: #ffffff;
+    }
+
+    .tokenomics-note {
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .tokenomics-distribution {
+      margin-top: 8px;
+      border-radius: 14px;
+      background: radial-gradient(circle at top left, rgba(132, 94, 247, 0.28), rgba(6, 6, 26, 0.98));
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 10px 12px;
+    }
+
+    .tm-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) auto;
+      align-items: center;
+      padding: 5px 0;
+      font-size: 13px;
+      gap: 10px;
+      position: relative;
+    }
+
+    .tm-row::before {
+      content: "";
+      position: absolute;
+      bottom: 3px;
+      left: 0;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--secondary), var(--primary));
+      opacity: 0.28;
+      width: 0;
+      transition: width 0.22s ease-out;
+    }
+
+    .tokenomics-distribution:hover .tm-row::before {
+      width: 100%;
+    }
+
+    .tm-row span:last-child {
+      font-weight: 600;
+      color: #ffffff;
+      text-align: right;
+    }
+
+    .tokenomics-footnote {
+      margin-top: 8px;
+      font-size: 11px;
+      color: var(--muted);
+      opacity: 0.8;
+    }
+
+    .tm-list {
+      list-style: none;
+      padding-left: 0;
+      margin: 6px 0 0;
+    }
+
+    .tm-list li {
+      margin-bottom: 6px;
+      line-height: 1.5;
+    }
+
+    .tm-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      font-size: 12px;
+    }
+
+    .tm-table th,
+    .tm-table td {
+      padding: 6px 8px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      text-align: left;
+    }
+
+    .tm-table th {
+      font-size: 12px;
+      color: #ffffff;
+      background: rgba(12, 10, 32, 0.9);
+    }
+
+    .tm-loop {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+      align-items: center;
+    }
+
+    .tm-pill {
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: radial-gradient(circle at top left, rgba(132, 94, 247, 0.4), rgba(5, 5, 26, 1));
+      font-size: 11px;
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      white-space: nowrap;
+    }
+
+    .tm-arrow {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(255, 255, 255, 0.6);
+      padding: 0 4px;
+    }
+
+    /* DISCLAIMER / FOOTER STYLE */
+
+    footer {
+      max-width: 1180px;
+      margin: 0 auto 26px;
+      padding: 12px 20px 0;
+      font-size: 11px;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      opacity: 0.9;
+    }
+
+    footer a { color: var(--muted); }
+    footer a:hover { color: #fff; }
+
+    /* REVEAL ANIMACIJA */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    }
+
+    .reveal-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+<header class="chlg-navbar">
+  <nav class="chlg-nav-inner">
+    <div class="chlg-logo-area">
+      <div class="chlg-logo-pill">
+        <img src="chlg-logo-pill.png" alt="CHLG Token" class="chlg-logo">
+      </div>
+      <span class="chlg-logo-text">CHLG · Challenge Token</span>
     </div>
-  </body>
+
+    <div class="chlg-nav-links">
+      <a href="index_clean.html" class="nav-btn">Home</a>
+      <a href="how-it-works_clean.html" class="nav-btn">How it works</a>
+      <a href="tokenomics.html" class="nav-btn active">Tokenomics</a>
+      <a href="roadmap.html" class="nav-btn">Roadmap</a>
+    </div>
+
+    <a href="#" class="nav-cta">Join early list</a>
+  </nav>
+</header>
+
+<main class="page-wrapper">
+
+  <!-- TOKENOMICS HERO -->
+  <section id="tokenomics" class="section">
+    <div class="section-header reveal">
+      <div class="section-label">
+        <span class="section-label-dot"></span>
+        <span>Token design</span>
+      </div>
+      <h2>CHLG Tokenomics</h2>
+      <p>How CHLG is distributed, unlocked and used across the challenge-to-earn ecosystem.</p>
+    </div>
+
+    <div class="tm-hero reveal">
+      <div class="tm-hero-main">
+        <h3 class="tm-hero-title">The native currency of challenge culture</h3>
+        <p class="tm-hero-sub">
+          CHLG powers real-life challenges verified by AI – from daily fitness streaks
+          to brand-funded viral campaigns. Tokenomics are built to reward real activity,
+          not just early speculation.
+        </p>
+        <div class="tm-hero-tags">
+          <span class="tm-tag">Gen-Z first</span>
+          <span class="tm-tag">Challenge-to-earn</span>
+          <span class="tm-tag">Anti-bot AI engine</span>
+        </div>
+      </div>
+
+      <div class="tm-hero-aside">
+        <div class="tm-stat-card">
+          <span class="tm-stat-label">Token</span>
+          <span class="tm-stat-value">$CHLG</span>
+          <span>Challenge Token</span>
+        </div>
+        <div class="tm-stat-card">
+          <span class="tm-stat-label">Max supply</span>
+          <span class="tm-stat-value">1,000,000,000</span>
+          <span>Fixed cap</span>
+        </div>
+        <div class="tm-stat-card">
+          <span class="tm-stat-label">Type</span>
+          <span class="tm-stat-value">Utility</span>
+          <span>ERC-20 / EVM</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOKEN OVERVIEW -->
+    <div class="info-grid">
+      <div class="info-card reveal">
+        <h3>Token overview</h3>
+        <p>
+          <b>Token name:</b> CHLG (Challenge Token)<br/>
+          <b>Type:</b> Utility · ERC-20 / EVM-compatible<br/>
+          <b>Max supply:</b> 1,000,000,000 CHLG<br/>
+          <b>Initial circulating supply:</b> TBD at TGE (based on presale + liquidity).
+        </p>
+      </div>
+      <div class="info-card reveal">
+        <h3>Design principles</h3>
+        <p>
+          Long-term aligned incentives: the majority of CHLG is reserved for real user
+          activity and ecosystem growth, while team, investors and partners unlock
+          gradually over time to reduce sell pressure and keep the economy healthy.
+        </p>
+      </div>
+    </div>
+
+    <!-- DISTRIBUTION GRID -->
+    <div class="tokenomics-grid">
+      <div class="tokenomics-block reveal">
+        <h3>Supply distribution</h3>
+        <p class="tokenomics-note">
+          Balanced allocation between users, builders and liquidity to support sustainable growth.
+        </p>
+        <div class="tokenomics-distribution">
+          <div class="tm-row"><span>Challenge rewards &amp; ecosystem</span><span>40%</span></div>
+          <div class="tm-row"><span>Presale &amp; public sale</span><span>18%</span></div>
+          <div class="tm-row"><span>Team</span><span>12%</span></div>
+          <div class="tm-row"><span>Advisors</span><span>3%</span></div>
+          <div class="tm-row"><span>Marketing &amp; partnerships</span><span>10%</span></div>
+          <div class="tm-row"><span>Liquidity &amp; market making</span><span>10%</span></div>
+          <div class="tm-row"><span>Treasury &amp; safety fund</span><span>7%</span></div>
+        </div>
+        <p class="tokenomics-footnote">
+          Exact split and on-chain addresses will be published before TGE in a public dashboard.
+        </p>
+      </div>
+
+      <div class="tokenomics-block reveal">
+        <h3>Utility of CHLG</h3>
+        <ul class="tm-list">
+          <li><b>Challenge rewards</b> – users earn CHLG for completing verified real-world challenges.</li>
+          <li><b>Staking &amp; boosts</b> – stake CHLG to unlock higher-value tasks, streak multipliers and anti-bot priority.</li>
+          <li><b>Creator payouts</b> – creators and brands receive CHLG for running successful challenges.</li>
+          <li><b>Marketplace</b> – spend CHLG on premium challenge packs, IRL perks, and brand drops.</li>
+          <li><b>Reputation perks</b> – CHLG balances and history factor into CHLG Passport &amp; reputation score.</li>
+        </ul>
+      </div>
+
+      <div class="tokenomics-block reveal">
+        <h3>Economic loop</h3>
+        <p class="tokenomics-note">
+          CHLG is designed as the native currency of challenge culture – not just a reward ticker.
+        </p>
+        <div class="tm-loop">
+          <div class="tm-pill">Users complete challenges</div>
+          <div class="tm-arrow">earn</div>
+          <div class="tm-pill">Receive CHLG rewards</div>
+          <div class="tm-arrow">spend</div>
+          <div class="tm-pill">Marketplace &amp; boosts</div>
+          <div class="tm-arrow">funds</div>
+          <div class="tm-pill">Brands &amp; challenge sponsors</div>
+          <div class="tm-arrow">recycle</div>
+          <div class="tm-pill">Treasury &amp; rewards pool</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VESTING & UNLOCKS -->
+  <section id="vesting" class="section">
+    <div class="section-header reveal">
+      <div class="section-label">
+        <span class="section-label-dot"></span>
+        <span>Unlock logic</span>
+      </div>
+      <h2>Vesting &amp; unlocks</h2>
+      <p>Transparent unlock schedules to align long-term contributors with the health of the ecosystem.</p>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-card reveal">
+        <h3>Core vesting rules</h3>
+        <ul class="tm-list">
+          <li><b>Team:</b> 12-month cliff, then linear vesting over 30 months.</li>
+          <li><b>Advisors:</b> 6-month cliff, then linear vesting over 18 months.</li>
+          <li><b>Presale / public sale:</b> small TGE unlock, then linear vesting over 6–12 months (exact rounds TBD).</li>
+          <li><b>Rewards pool:</b> no fixed cliff; emissions scheduled according to challenge volume and difficulty tiers.</li>
+          <li><b>Marketing &amp; partnerships:</b> unlocked progressively as campaigns go live.</li>
+        </ul>
+      </div>
+
+      <div class="info-card reveal">
+        <h3>Year-by-year unlock outlook</h3>
+        <table class="tm-table">
+          <thead>
+            <tr><th>Year</th><th>Approx. unlocked supply</th><th>Key drivers</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Year 1</td><td>10–18%</td><td>TGE, presale unlocks, initial liquidity, early rewards.</td></tr>
+            <tr><td>Year 2</td><td>25–35%</td><td>Ongoing rewards, team &amp; advisor vesting, creator incentives.</td></tr>
+            <tr><td>Year 3</td><td>40–55%</td><td>Scaled brand challenges, marketplace growth, governance pilots.</td></tr>
+            <tr><td>Year 4+</td><td>&gt;60%</td><td>Mature ecosystem, governance-led emissions, new regions.</td></tr>
+          </tbody>
+        </table>
+        <p class="tokenomics-footnote">
+          Numbers are indicative and will be finalized once launch chain, TGE date and sale structure are locked in.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- STABILITY & ANTI-INFLATION -->
+  <section id="stability" class="section">
+    <div class="section-header reveal">
+      <div class="section-label">
+        <span class="section-label-dot"></span>
+        <span>Stability</span>
+      </div>
+      <h2>Stability &amp; anti-inflation design</h2>
+      <p>Mechanisms to keep CHLG sustainable as the ecosystem scales.</p>
+    </div>
+
+    <div class="tokenomics-grid">
+      <div class="tokenomics-block reveal">
+        <h3>Supply-side tools</h3>
+        <ul class="tm-list">
+          <li><b>Emission controls:</b> rewards per challenge can be adjusted based on on-chain activity and fraud levels.</li>
+          <li><b>Staking sinks:</b> boosted rewards and access tiers require locking CHLG for longer periods.</li>
+          <li><b>Optional burns:</b> a portion of marketplace and sponsor fees can be directed to periodic burns.</li>
+        </ul>
+      </div>
+
+      <div class="tokenomics-block reveal">
+        <h3>Demand-side drivers</h3>
+        <ul class="tm-list">
+          <li>Creators and brands need CHLG to sponsor premium challenges.</li>
+          <li>Users spend CHLG on boosts, challenge bundles and exclusive drops.</li>
+          <li>Partners can integrate CHLG rewards into their own apps and communities.</li>
+        </ul>
+      </div>
+
+      <div class="tokenomics-block reveal">
+        <h3>Treasury &amp; governance</h3>
+        <ul class="tm-list">
+          <li>A portion of fees and allocations flow into a community treasury.</li>
+          <li>Over time, governance can vote on emissions, burns and new reward programs.</li>
+          <li>Goal: keep CHLG attractive to new users without over-rewarding passive holders.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- DISCLAIMER -->
+  <section id="disclaimer" class="section">
+    <div class="info-card reveal">
+      <h3>Disclaimer</h3>
+      <p class="tokenomics-note">
+        CHLG is intended as a utility token within the Challenge-to-Earn ecosystem. It is not designed, marketed or
+        intended as a security or investment product. Token allocations, vesting schedules and all figures shown here
+        are preliminary and may change prior to mainnet launch. Always do your own research and consult independent
+        legal and financial advice before participating in any token-related activity.
+      </p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <span>© CHLG – Challenge Token</span>
+  <span>Draft tokenomics – subject to change before TGE.</span>
+</footer>
+
+<script>
+  // Scroll reveal
+  (function() {
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('reveal-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    revealEls.forEach(el => observer.observe(el));
+  })();
+</script>
+
+</body>
 </html>
