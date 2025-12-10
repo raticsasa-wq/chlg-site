@@ -787,6 +787,22 @@
 
     footer a { color: var(--muted); }
     footer a:hover { color: #fff; }
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: flex-end;
+      font-size: 12px;
+      margin-bottom: 4px;
+    }
+
+    .footer-legal {
+      font-size: 11px;
+      color: var(--muted);
+      max-width: 360px;
+      margin-left: auto;
+    }
+
 
     /* REVEAL ANIMACIJA */
 
@@ -800,7 +816,92 @@
       opacity: 1;
       transform: translateY(0);
     }
-  </style>
+  
+/* === CHLG Gradient Neon Footer Links === */
+.footer-socials a {
+  background: linear-gradient(90deg, #00eaff, #ff00d4);
+  -webkit-background-clip: text;
+  color: transparent !important;
+  font-weight: 600;
+  transition: 0.25s ease;
+  text-decoration: none;
+}
+
+.footer-socials a:hover {
+  filter: drop-shadow(0 0 6px rgba(255,0,255,0.6));
+  opacity: 1;
+}
+
+
+    /* === CHLG Floating Community Bubble === */
+    .floating-support {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 60;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: flex-end;
+    }
+
+    .float-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 16px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      box-shadow:
+        0 0 16px rgba(0, 0, 0, 0.9),
+        0 0 22px rgba(200, 0, 255, 0.65);
+      transition: 0.22s ease-out;
+      backdrop-filter: blur(14px);
+      background:
+        radial-gradient(circle at 0 0, rgba(200, 0, 255, 0.3), rgba(6, 6, 26, 0.98));
+      color: #fff;
+    }
+
+    .float-pill .icon {
+      font-size: 14px;
+    }
+
+    .float-pill.float-secondary {
+      box-shadow:
+        0 0 14px rgba(0, 0, 0, 0.85),
+        0 0 18px rgba(0, 240, 255, 0.5);
+      border-color: rgba(0, 240, 255, 0.6);
+      background:
+        radial-gradient(circle at 100% 0, rgba(0, 240, 255, 0.3), rgba(6, 6, 26, 0.98));
+    }
+
+    .float-pill:hover {
+      transform: translateY(-1px) translateX(-1px);
+      box-shadow:
+        0 0 22px rgba(200, 0, 255, 0.9),
+        0 0 30px rgba(0, 240, 255, 0.7);
+    }
+
+    @media (max-width: 640px) {
+      .floating-support {
+        right: 12px;
+        bottom: 12px;
+        gap: 6px;
+      }
+
+      .float-pill {
+        padding: 8px 13px;
+        font-size: 11px;
+      }
+    }
+
+</style>
 </head>
 <body>
 
@@ -820,7 +921,7 @@
       <a href="roadmap.html" class="nav-btn">Roadmap</a>
     </div>
 
-    <a href="#" class="nav-cta">Join early list</a>
+    <a href="https://t.me/chlgofficial" class="nav-cta" target="_blank" rel="noopener noreferrer">Join Telegram</a>
   </nav>
 </header>
 
@@ -1164,8 +1265,23 @@
 </main>
 
 <footer>
-  <span>© CHLG – Challenge Token</span>
-  <span>Product flow – draft for internal &amp; investor use.</span>
+  <div>
+    <div>© CHLG Challenge Token · 2025</div>
+    <div>Product flow – draft for internal &amp; investor use.</div>
+  </div>
+  <div style="text-align:right;">
+    <div class="footer-socials">
+      <a href="https://t.me/chlgofficial" target="_blank" rel="noopener noreferrer">Telegram</a> ·
+      <a href="https://discord.gg/WFbX4szu" target="_blank" rel="noopener noreferrer">Discord</a> ·
+      <a href="https://x.com/CHLGtoken" target="_blank" rel="noopener noreferrer">X</a> ·
+      <a href="https://www.tiktok.com/@challengetoken" target="_blank" rel="noopener noreferrer">TikTok</a> ·
+      <a href="https://instagram.com/challengetoken" target="_blank" rel="noopener noreferrer">Instagram</a>
+    </div>
+
+    <div class="footer-legal">
+      Product flow – draft for internal &amp; investor use. Nothing on this page is financial, legal or investment advice.
+    </div>
+  </div>
 </footer>
 
 <script>
