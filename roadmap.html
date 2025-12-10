@@ -533,151 +533,131 @@
 
   <!-- HEADER / NAVBAR + LOGO PILL -->
   <style>
-/* CHLG unified navbar */
-    .chlg-navbar {
-      width: 100%;
-      padding: 12px 0;
-      backdrop-filter: blur(14px);
-      background: linear-gradient(
-        to bottom,
-        rgba(3, 0, 12, 0.92),
-        rgba(3, 0, 12, 0.88)
-      );
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      position: sticky;
-      top: 0;
-      z-index: 9999;
-    }
+.chlg-navbar {
+  width: 100%;
+  padding: 12px 0;
+  backdrop-filter: blur(12px);
+  background: rgba(15, 10, 30, 0.55);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+}
 
-    .chlg-nav-inner {
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 0 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-    }
+.chlg-nav-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
-    .chlg-logo-area {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      min-width: 0;
-    }
+.chlg-logo-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
 
-    .chlg-logo-pill {
-      width: 40px;
-      height: 40px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 30% 20%,
-        rgba(20, 0, 40, 1) 0%,
-        rgba(10, 0, 25, 1) 45%,
-        rgba(3, 0, 10, 1) 100%
-      );
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 0 18px rgba(255, 0, 200, 0.7);
-      animation: chlgGlow 2.4s ease-in-out infinite;
-      flex-shrink: 0;
-    }
+.chlg-logo {
+  width: 32px;
+  height: 26px;
+}
 
-    .chlg-logo {
-      width: 32px;
-      height: 26px;
-      object-fit: contain;
-    }
+.chlg-logo-text {
+  font-size: 15px;
+  color: #ffffff;
+  font-weight: 600;
+  opacity: 0.9;
+}
 
-    .chlg-logo-text {
-      font-size: 14px;
-      color: #ffffff;
-      font-weight: 600;
-      opacity: 0.9;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
+.chlg-nav-links {
+  display: flex;
+  gap: 26px;
+}
 
-    .chlg-nav-links {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      flex: 1;
-      justify-content: center;
-    }
+.nav-btn {
+  color: rgba(255,255,255,0.72);
+  font-size: 13px;
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background:
+    radial-gradient(circle at 0 0, rgba(200, 0, 255, 0.18), transparent 60%),
+    radial-gradient(circle at 100% 100%, rgba(0, 240, 255, 0.16), transparent 60%);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: all 0.2s ease-out;
+}
 
-    .nav-btn {
-      color: rgba(255, 255, 255, 0.7);
-      font-size: 11px;
-      text-decoration: none;
-      padding: 7px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      background:
-        radial-gradient(circle at 0 0, rgba(200, 0, 255, 0.18), transparent 60%),
-        radial-gradient(circle at 100% 100%, rgba(0, 240, 255, 0.16), transparent 60%);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      transition: all 0.18s ease-out;
-      white-space: nowrap;
-    }
+.nav-btn:hover {
+  color: #ffffff;
+  border-color: rgba(255,255,255,0.55);
+  text-shadow: 0 0 10px rgba(255,255,255,0.55);
+  box-shadow:
+    0 0 18px rgba(200, 0, 255, 0.55),
+    0 0 24px rgba(0, 240, 255, 0.35);
+  transform: translateY(-1px) scale(1.02);
+}
 
-    .nav-btn:hover {
-      color: #ffffff;
-      border-color: rgba(255, 255, 255, 0.6);
-      text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-      box-shadow:
-        0 0 18px rgba(200, 0, 255, 0.55),
-        0 0 22px rgba(0, 240, 255, 0.35);
-      transform: translateY(-1px) scale(1.01);
-    }
+.nav-btn.active {
+  color: #ffffff;
+  background: linear-gradient(135deg, #c800ff, #ff0080);
+  border-color: rgba(255,255,255,0.8);
+  box-shadow:
+    0 0 22px rgba(200, 0, 255, 0.75),
+    0 0 26px rgba(255, 0, 128, 0.55);
+}
 
-    .nav-btn.active {
-      color: #ffffff;
-      background: linear-gradient(135deg, #c800ff, #ff0080);
-      border-color: rgba(255, 255, 255, 0.85);
-      box-shadow:
-        0 0 22px rgba(200, 0, 255, 0.75),
-        0 0 26px rgba(255, 0, 128, 0.55);
-    }
+.nav-cta {
+  padding: 10px 22px;
+  background: linear-gradient(90deg, #ff00cc, #ff4dd2);
+  border-radius: 22px;
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.25s ease;
+  box-shadow: 0 0 15px rgba(255,0,200,0.45);
+}
 
-    .nav-cta {
-      padding: 9px 20px;
-      background: linear-gradient(90deg, #ff00cc, #ff4dd2);
-      border-radius: 999px;
-      color: white;
-      font-weight: 600;
-      font-size: 12px;
-      text-decoration: none;
-      transition: 0.2s ease;
-      box-shadow: 0 0 15px rgba(255, 0, 200, 0.45);
-      white-space: nowrap;
-    }
+.nav-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 22px rgba(255,0,200,0.7);
+}
 
-    .nav-cta:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 0 22px rgba(255, 0, 200, 0.7);
-    }
+/* TAMNIJI KRUG OKO LOGA – DA SE LOGO BOLJE VIDI */
+.chlg-logo-pill {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  background: radial-gradient(circle at 30% 20%,
+    rgba(20, 0, 40, 1) 0%,
+    rgba(10, 0, 25, 1) 45%,
+    rgba(3, 0, 10, 1) 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 18px rgba(255, 0, 200, 0.7);
+  animation: chlgGlow 2.4s ease-in-out infinite;
+}
 
-    @keyframes chlgGlow {
-      0% {
-        box-shadow: 0 0 10px rgba(255, 0, 200, 0.45);
-        transform: translateY(0);
-      }
-      50% {
-        box-shadow: 0 0 26px rgba(0, 255, 255, 0.75);
-        transform: translateY(-1px);
-      }
+@keyframes chlgGlow {
+  0% {
+    box-shadow: 0 0 10px rgba(255, 0, 200, 0.45);
+    transform: translateY(0);
+  }
+  50% {
+    box-shadow: 0 0 26px rgba(0, 255, 255, 0.75);
+    transform: translateY(-1px);
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(255, 0, 200, 0.45);
+    transform: translateY(0);
+  }
+}
   </style>
-
-  <!-- SEO & Social -->
-  <meta property="og:title" content="CHLG – Challenge Token" />
-  <meta property="og:description" content="CHLG rewards users with crypto for completing real-life challenges verified by AI." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="chlg-logo-pill.png" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <link rel="icon" type="image/png" href="chlg-favicon.png" />
 </head>
 <body>
 
@@ -691,9 +671,9 @@
     </div>
 
     <div class="chlg-nav-links">
-      <a href="index.html" class="nav-btn">Home</a>
-      <a href="how-it-works.html" class="nav-btn">How it works</a>
-      <a href="tokenomics.html" class="nav-btn">Tokenomics</a>
+      <a href="index_clean.html" class="nav-btn">Home</a>
+      <a href="how-it-works_clean.html" class="nav-btn">How it works</a>
+      <a href="tokenomics_clean.html" class="nav-btn">Tokenomics</a>
       <a href="roadmap.html" class="nav-btn active">Roadmap</a>
     </div>
 
