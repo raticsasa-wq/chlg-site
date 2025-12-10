@@ -534,49 +534,79 @@
   <!-- HEADER / NAVBAR + LOGO PILL -->
   <style>
 .chlg-navbar {
-  width: 100%;
-  padding: 12px 0;
-  backdrop-filter: blur(12px);
-  background: rgba(15, 10, 30, 0.55);
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-  position: sticky;
-  top: 0;
-  z-index: 9999;
-}
+      width: 100%;
+      padding: 12px 0;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(
+        to bottom,
+        rgba(3, 0, 12, 0.92),
+        rgba(3, 0, 12, 0.88)
+      );
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      position: sticky;
+      top: 0;
+      z-index: 9999;
+    }
 
-.chlg-nav-inner {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 32px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
+    .chlg-nav-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
 
-.chlg-logo-area {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
+    .chlg-logo-area {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
 
-.chlg-logo {
-  width: 32px;
-  height: 26px;
-}
+    .chlg-logo-pill {
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 20%,
+        rgba(20, 0, 40, 1) 0%,
+        rgba(10, 0, 25, 1) 45%,
+        rgba(3, 0, 10, 1) 100%
+      );
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 18px rgba(255, 0, 200, 0.7);
+      animation: chlgGlow 2.4s ease-in-out infinite;
+      flex-shrink: 0;
+    }
 
-.chlg-logo-text {
-  font-size: 15px;
-  color: #ffffff;
-  font-weight: 600;
-  opacity: 0.9;
-}
+    .chlg-logo {
+      width: 32px;
+      height: 26px;
+      object-fit: contain;
+    }
 
-.chlg-nav-links {
-  display: flex;
-  gap: 26px;
-}
+    .chlg-logo-text {
+      font-size: 14px;
+      color: #ffffff;
+      font-weight: 600;
+      opacity: 0.9;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
 
-.nav-btn {
+    .chlg-nav-links {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex: 1;
+      justify-content: center;
+    }
+
+    .nav-btn {
       color: rgba(255, 255, 255, 0.7);
       font-size: 11px;
       text-decoration: none;
@@ -631,54 +661,262 @@
 
     @keyframes chlgGlow {
       0% {
-        box-shadow: 0 0 10px rgba(255, .nav-cta {
-  padding: 10px 22px;
-  background: linear-gradient(90deg, #ff00cc, #ff4dd2);
-  border-radius: 22px;
-  color: white;
-  font-weight: 600;
-  text-decoration: none;
-  transition: 0.25s ease;
-  box-shadow: 0 0 15px rgba(255,0,200,0.45);
-}
+        box-shadow: 0 0 10px rgba(255, 0, 200, 0.45);
+        transform: translateY(0);
+      }
+      50% {
+        box-shadow: 0 0 26px rgba(0, 255, 255, 0.75);
+        transform: translateY(-1px);
+      }
+      100% {
+        box-shadow: 0 0 10px rgba(255, 0, 200, 0.45);
+        transform: translateY(0);
+      }
+    }
 
-.nav-cta:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0 22px rgba(255,0,200,0.7);
-}
+    @media (max-width: 800px) {
+      .chlg-nav-inner {
+        flex-wrap: wrap;
+        justify-content: space-between;
+        row-gap: 10px;
+      }
 
-/* TAMNIJI KRUG OKO LOGA – DA SE LOGO BOLJE VIDI */
-.chlg-logo-pill {
-  width: 40px;
-  height: 40px;
-  border-radius: 999px;
-  background: radial-gradient(circle at 30% 20%,
-    rgba(20, 0, 40, 1) 0%,
-    rgba(10, 0, 25, 1) 45%,
-    rgba(3, 0, 10, 1) 100%
-  );
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 0 18px rgba(255, 0, 200, 0.7);
-  animation: chlgGlow 2.4s ease-in-out infinite;
-}
+      .chlg-nav-links {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
 
-@keyframes chlgGlow {
-  0% {
-    box-shadow: 0 0 10px rgba(255, 0, 200, 0.45);
-    transform: translateY(0);
-  }
-  50% {
-    box-shadow: 0 0 26px rgba(0, 255, 255, 0.75);
-    transform: translateY(-1px);
-  }
-  100% {
-    box-shadow: 0 0 10px rgba(255, 0, 200, 0.45);
-    transform: translateY(0);
-  }
-}
-  </style>
+      .nav-btn {
+        font-size: 10px;
+        padding: 6px 10px;
+      }
+
+      .nav-cta {
+        font-size: 11px;
+        padding: 8px 16px;
+      }
+    }
+
+  
+    .newsletter-form {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+    }
+
+    .newsletter-form input[type="email"] {
+      min-width: 240px;
+      max-width: 360px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(4, 4, 20, 0.96);
+      color: #fff;
+      font-size: 12px;
+      outline: none;
+    }
+
+    .newsletter-form input[type="email"]::placeholder {
+      color: rgba(255, 255, 255, 0.55);
+      font-size: 11px;
+    }
+
+    .newsletter-note {
+      margin-top: 8px;
+      font-size: 11px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .btn-secondary {
+      padding: 8px 16px;
+      font-size: 12px;
+      margin: 0;
+      box-shadow: 0 0 12px rgba(0, 240, 255, 0.45);
+      background: linear-gradient(135deg, var(--secondary), var(--primary));
+    }
+
+    .brand-cta {
+      margin-top: 14px;
+      font-size: 12px;
+      padding: 8px 16px;
+    }
+
+    @media (max-width: 520px) {
+      .newsletter-form {
+        flex-direction: column;
+      }
+
+      .newsletter-form input[type="email"] {
+        width: 100%;
+      }
+    }
+
+  
+    
+    /* App mockups section */
+    #app-mockups {
+      scroll-margin-top: 140px;
+    }
+
+    .app-mockups {
+      padding-top: 40px;
+      padding-bottom: 40px;
+    }
+
+    .mockup-carousel {
+      margin-top: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .mockup-window {
+      max-width: 420px;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .mockup-track {
+      display: flex;
+      width: 100%;
+      transition: transform 0.45s ease-out;
+    }
+
+    .mockup-slide {
+      flex: 0 0 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      padding: 6px;
+    }
+
+    .mockup-slide.is-active .mockup-phone {
+      box-shadow:
+        0 0 24px rgba(200, 0, 255, 0.7),
+        0 0 32px rgba(0, 240, 255, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .mockup-phone {
+      width: 100%;
+      max-width: 320px;
+      border-radius: 34px;
+      padding: 8px;
+      background: radial-gradient(circle at top, rgba(132, 94, 247, 0.3), rgba(8, 8, 32, 1));
+      box-shadow: 0 0 22px rgba(0, 0, 0, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: box-shadow 0.25s ease, transform 0.25s ease;
+    }
+
+    .mockup-phone img {
+      width: 100%;
+      display: block;
+      border-radius: 26px;
+    }
+
+    .mockup-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: #ffffff;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .mockup-text {
+      font-size: 12px;
+      line-height: 1.6;
+      color: var(--muted);
+      max-width: 360px;
+      text-align: center;
+    }
+
+    .mockup-arrow {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at top left, rgba(200, 0, 255, 0.22), rgba(5, 5, 20, 1));
+      color: #fff;
+      cursor: pointer;
+      font-size: 16px;
+      line-height: 1;
+      transition: all 0.18s ease-out;
+      flex-shrink: 0;
+    }
+
+    .mockup-arrow:hover {
+      border-color: rgba(255, 255, 255, 0.7);
+      box-shadow:
+        0 0 18px rgba(200, 0, 255, 0.6),
+        0 0 22px rgba(0, 240, 255, 0.4);
+      transform: translateY(-1px);
+    }
+
+    .mockup-dots {
+      margin-top: 14px;
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .mockup-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      background: transparent;
+      padding: 0;
+      cursor: pointer;
+      transition: all 0.18s ease-out;
+    }
+
+    .mockup-dot.is-active {
+      width: 18px;
+      background: linear-gradient(135deg, #c800ff, #00f0ff);
+      border-color: transparent;
+      box-shadow:
+        0 0 12px rgba(200, 0, 255, 0.8),
+        0 0 16px rgba(0, 240, 255, 0.6);
+    }
+
+    @media (max-width: 900px) {
+      .mockup-carousel {
+        gap: 6px;
+      }
+
+      .mockup-arrow {
+        width: 30px;
+        height: 30px;
+        font-size: 14px;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .mockup-carousel {
+        gap: 4px;
+      }
+
+      .mockup-window {
+        max-width: 360px;
+      }
+
+      .mockup-text {
+        font-size: 11px;
+      }
+    }
+</style>
 </head>
 <body>
 
@@ -692,9 +930,9 @@
     </div>
 
     <div class="chlg-nav-links">
-      <a href="index_clean.html" class="nav-btn">Home</a>
-      <a href="how-it-works_clean.html" class="nav-btn">How it works</a>
-      <a href="tokenomics_clean.html" class="nav-btn">Tokenomics</a>
+      <a href="index.html" class="nav-btn">Home</a>
+      <a href="how-it-works.html" class="nav-btn">How it works</a>
+      <a href="tokenomics.html" class="nav-btn">Tokenomics</a>
       <a href="roadmap.html" class="nav-btn active">Roadmap</a>
     </div>
 
